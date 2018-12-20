@@ -2,33 +2,72 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int MAX = 100, MIN = 1;
+const int VIE_MAX = 10;
 
 int main( int argc, char *argv[]) {
     (void)argc;
     (void)argv;
 
     srand(time(NULL));
-    int nombreMystere = -1;
 
-    int nb_vie = 0;
+    int nombreMystere = -1;
+    int nb_vie = VIE_MAX;
     int find = 0;
     int tmp = -1;
     int play = 0;
-
+    int MAX = -1;
+    int MIN = -1;
+    int choixNiveau = 0;
 
     printf("\n### Plus ou Moins ###\n\n");
     printf("Bienvenu dans le jeux du Plus ou moins !\n");
-    printf("Le but ? Trouver le nombre mystère compris en %d et %d en moin de %d coup !\n", MIN, MAX, nb_vie);
+    printf("Le but ? Trouver le nombre mystère compris entre un Minimum et Maximum en moin de %d coup !\n", VIE_MAX);
     printf("Simple non ? Vous voulez jouer ? (1/0) ");
     scanf("%d", &play);
 
-
     while(play) {
-        nb_vie = 5;
+        while(!choixNiveau) {
+            printf("\n");
+            printf("Mode de jeu disponible :\n");
+            printf("1. niveau Debutant\t( 1 : 20 )\n");
+            printf("2. niveau Amateur\t( 1 : 50 )\n");
+            printf("3. niveau Confirme\t( 1 : 100 )\n");
+            printf("4. niveau Expert\t( 1 : 1000 )\n");
+            printf("Quel niveau choissez-vous ? ");
+            scanf("%d", &choixNiveau);
+            printf("\n");
+            switch(choixNiveau) {
+                case 1:
+                MIN = 1;
+                MAX = 20;
+                printf("L'ordinateur ce prepare pour passer en mode Debutant ...\n");
+                break;
+                case 2:
+                MIN = 1;
+                MAX = 50;
+                printf("L'ordinateur ce prepare pour passer en mode Amateur ...\n");
+                break;
+                case 3:
+                MIN = 1;
+                MAX = 100;
+                printf("L'ordinateur ce prepare pour passer en mode Confirme ...\n");
+                break;
+                case 4:
+                MIN = 1;
+                MAX = 1000;
+                printf("L'ordinateur ce prepare pour passer en mode Expert ...\n");
+                break;
+                default:
+                choixNiveau = 0;
+                break;
+            }
+        }
+
+        choixNiveau = 0;
+        nb_vie = 10;
         find = 0;
         nombreMystere = (rand() % (MAX - MIN + 1)) + MIN;
-        printf("\nLe nombre Mystere a été elu, a vous de jouer ...\n");
+        printf("Le nombre Mystere a été elu, a vous de jouer !\n\n");
         while(!find && nb_vie){
             nb_vie--;
             printf("Quel est le nombre ? ");
@@ -42,7 +81,7 @@ int main( int argc, char *argv[]) {
                 printf("%d vie(s) restante(s) !\n", nb_vie);
             }
             else {
-                printf("Bravo, vous avez trouve le nombre mystere !!!\nEt en seulement %d coup !", 5-nb_vie);
+                printf("Bravo, vous avez trouve le nombre mystere !!!\nEt en seulement %d coup !\n", VIE_MAX-nb_vie);
                 find++;
             }
         }
