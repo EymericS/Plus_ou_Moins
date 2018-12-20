@@ -9,37 +9,51 @@ int main( int argc, char *argv[]) {
     (void)argv;
 
     srand(time(NULL));
-    int nombreMystere = (rand() % (MAX - MIN + 1)) + MIN;
+    int nombreMystere = -1;
 
-    int nb_vie = 5;
+    int nb_vie = 0;
     int find = 0;
     int tmp = -1;
+    int play = 0;
+
 
     printf("\n### Plus ou Moins ###\n\n");
     printf("Bienvenu dans le jeux du Plus ou moins !\n");
     printf("Le but ? Trouver le nombre mystère compris en %d et %d en moin de %d coup !\n", MIN, MAX, nb_vie);
-    printf("Simple non ? A vous de jouer !\n\n");
+    printf("Simple non ? Vous voulez jouer ? (1/0) ");
+    scanf("%d", &play);
 
-    while(!find && nb_vie){
-        nb_vie--;
-        printf("Quel est le nombre ? ");
-        scanf("%d", &tmp);
-        if( tmp > nombreMystere ) {
-            printf("C'est moins !\n");
-            printf("%d vie(s) restante(s) !\n", nb_vie);
+
+    while(play) {
+        nb_vie = 5;
+        find = 0;
+        nombreMystere = (rand() % (MAX - MIN + 1)) + MIN;
+        printf("\nLe nombre Mystere a été elu, a vous de jouer ...\n");
+        while(!find && nb_vie){
+            nb_vie--;
+            printf("Quel est le nombre ? ");
+            scanf("%d", &tmp);
+            if( tmp > nombreMystere ) {
+                printf("C'est moins !\n");
+                printf("%d vie(s) restante(s) !\n", nb_vie);
+            }
+            else if ( tmp < nombreMystere ) {
+                printf("C'est plus !\n");
+                printf("%d vie(s) restante(s) !\n", nb_vie);
+            }
+            else {
+                printf("Bravo, vous avez trouve le nombre mystere !!!\nEt en seulement %d coup !", 5-nb_vie);
+                find++;
+            }
         }
-        else if ( tmp < nombreMystere ) {
-            printf("C'est plus !\n");
-            printf("%d vie(s) restante(s) !\n", nb_vie);
+        if(!nb_vie) {
+            printf("Vous n'avez malheureusement pas trouver le nombre mystere qui etait %d ...\n", nombreMystere);
         }
-        else {
-            printf("Bravo, vous avez trouve le nombre mystere !!!\nEt en seulement %d coup !", 5-nb_vie);
-            find++;
-        }
+        printf("\nEncor une partie ? (1/0) ");
+        scanf("%d", &play);
     }
-    if(!nb_vie) {
-        printf("Vous n'avez malheureusement pas trouver le nombre mystere qui etait %d ...\n", nombreMystere);
-    }
+    
+    printf("\nA une prochaine fois peut-etre !\n");
 
     return EXIT_SUCCESS;
 }
