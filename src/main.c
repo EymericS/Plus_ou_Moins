@@ -4,6 +4,19 @@
 
 const int VIE_MAX = 10;
 
+void title() {
+    //system("clear");
+    printf("\033[2J\033[1;1H");
+    printf("###############################################################################\n");
+    printf("# _____               ____                 _      _ _____ _              ____ #\n");
+    printf("# |   \\ |     |    | /                     |\\    /|   |   |\\   | |    | /     #\n");
+    printf("# |___| |     |    | \\___       _  ___     | \\  / |   |   | \\  | |    | \\___  #\n");
+    printf("# |     |     |    |     \\     / \\ |       |  \\/  |   |   |  \\ | |    |     \\ #\n");
+    printf("# |     |____ |____| ____/     \\_/ |       |      | __|__ |   \\| |____| ____/ #\n");
+    printf("#                                                                             #\n");
+    printf("###############################################################################\n\n");
+}
+
 int main( int argc, char *argv[]) {
     (void)argc;
     (void)argv;
@@ -19,7 +32,7 @@ int main( int argc, char *argv[]) {
     int MIN = -1;
     int choixNiveau = 0;
 
-    printf("\n### Plus ou Moins ###\n\n");
+    title();
     printf("Bienvenu dans le jeux du Plus ou moins !\n");
     printf("Le but ? Trouver le nombre mystère compris entre un Minimum et Maximum en moin de %d coup !\n", VIE_MAX);
     printf("Simple non ? Vous voulez jouer ? (1/0) ");

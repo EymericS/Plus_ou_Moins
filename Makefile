@@ -8,6 +8,8 @@ define replace
 		sed 
 endef
 
+conv = $(subst /,$(SLASH),$(1))
+
 BIN_DIR_ALL = bin
 OBJ_DIR_ALL = obj
 DEP_DIR_ALL = dep
@@ -112,6 +114,10 @@ mrproper: clean
 	@echo "--> Deleting executables files in executables folder $(BIN_DIR) ..."
 	@$(RM_FILE) $(EXEC)*
 
+.PHONY: run
+run:	all
+	@echo Running $(call conv,$(BIN_DIR_ALL )$(EXEC)) ...
+	@./$(BIN_DIR_ALL )/$(EXEC)
 
 ##### AUTO VAR #####
 #
